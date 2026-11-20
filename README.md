@@ -30,11 +30,9 @@
 
 ## 下载
 
-| | |
-| --- | --- |
-| 安装包 | [Releases · latest](https://github.com/nanzhe-qwq/PixelMoney/releases/latest) · 3.4 MB · Android 8.0（API 26）以上 |
-| 自己编译 | 见[构建](#构建) |
-| 宣传片 | [31 秒 mp4](docs/promo.mp4) · [博客长文](https://qwqovoppp.top/blog/pixel-money-automatic-bookkeeping/) |
+- **安装包**：[Releases · latest](https://github.com/nanzhe-qwq/PixelMoney/releases/latest) · 3.4 MB · Android 8.0（API 26）以上
+- **自己编译**：见[构建](#构建)
+- **宣传片**：[31 秒 mp4](docs/promo.mp4) · **开发手记**：[博客长文](https://qwqovoppp.top/blog/pixel-money-automatic-bookkeeping/)
 
 装好后要在系统里开两样东西：**账单读取**（无障碍服务）和**后台弹出界面**（澎湃 OS / MIUI 的独立开关——只开「显示悬浮窗」是不会弹的，这点踩过坑）。
 
