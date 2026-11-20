@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">像素记账</string>
+    <string name="accessibility_service_description">像素记账无障碍服务：读取微信、支付宝以及已开启购物和外卖应用的支付回执、账单或订单详情页面，自动弹窗记账。仅在明确支付或收款完成时提取金额、商户和页面提供的交易时间，用于本机确认记账。</string>
+</resources>

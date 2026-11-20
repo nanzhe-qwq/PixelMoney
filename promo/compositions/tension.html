@@ -1,0 +1,129 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Deng";
+      src: url("assets/fonts/DengXian-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Deng";
+      src: url("assets/fonts/DengXian-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .tn-layer {
+      position: absolute;
+      inset: 0;
+      background: #08080f;
+    }
+    .tn-grain {
+      position: absolute;
+      inset: -20%;
+      background-image:
+        linear-gradient(rgba(233, 69, 96, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(233, 69, 96, 0.05) 1px, transparent 1px);
+      background-size: 52px 52px;
+      opacity: 0.5;
+    }
+    .tn-scan {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 220px;
+      background: linear-gradient(to bottom, transparent, rgba(233, 69, 96, 0.11), transparent);
+    }
+    .tn-copy {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 386px;
+      text-align: center;
+    }
+    .tn-kicker {
+      font-family: "Space Mono", monospace;
+      font-size: 30px;
+      letter-spacing: 0.28em;
+      color: #9ba0b8;
+      margin-bottom: 34px;
+    }
+    .tn-l1 {
+      font-family: "Deng";
+      font-weight: 700;
+      font-size: 96px;
+      line-height: 1.2;
+      color: #d8dae5;
+    }
+    .tn-l2 {
+      font-family: "Deng";
+      font-weight: 700;
+      font-size: 96px;
+      line-height: 1.2;
+      color: #e94560;
+      margin-top: 10px;
+    }
+    .tn-foot {
+      font-family: "Deng";
+      font-weight: 400;
+      font-size: 38px;
+      color: #9ba0b8;
+      margin-top: 52px;
+      letter-spacing: 0.02em;
+    }
+  </style>
+
+  <div id="root" data-composition-id="tension" data-width="1920" data-height="1080">
+    <div id="tension-layer" class="tn-layer clip" data-start="0" data-duration="3.6">
+      <div class="tn-grain"></div>
+      <div class="tn-scan"></div>
+
+      <div class="tn-copy">
+        <div class="tn-kicker">记账 APP 的老毛病</div>
+        <div class="tn-l1">三天后再补</div>
+        <div class="tn-l2">连买了什么都想不起来</div>
+        <div class="tn-foot">入口太重，坚持不下来</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo(".tn-scan", { y: 1140 }, { y: -260, duration: 3.4, ease: "none" }, 0);
+    tl.fromTo(".tn-grain", { opacity: 0 }, { opacity: 0.5, duration: 0.6, ease: "power1.out" }, 0);
+
+    tl.fromTo(
+      ".tn-kicker",
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" },
+      0.06,
+    );
+    tl.fromTo(
+      ".tn-l1",
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+      0.22,
+    );
+    tl.fromTo(
+      ".tn-l2",
+      { opacity: 0, filter: "blur(14px)", x: -18 },
+      { opacity: 1, filter: "blur(0px)", x: 0, duration: 0.42, ease: "power4.out" },
+      0.86,
+    );
+    tl.to(".tn-l2", { x: 7, duration: 0.06, ease: "none" }, 1.28);
+    tl.to(".tn-l2", { x: 0, duration: 0.09, ease: "none" }, 1.34);
+    tl.fromTo(
+      ".tn-foot",
+      { opacity: 0 },
+      { opacity: 1, duration: 0.55, ease: "power2.out" },
+      1.46,
+    );
+
+    window.__timelines["tension"] = tl;
+  </script>
+</template>

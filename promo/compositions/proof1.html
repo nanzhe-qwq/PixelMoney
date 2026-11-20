@@ -1,0 +1,155 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Deng";
+      src: url("assets/fonts/DengXian-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Deng";
+      src: url("assets/fonts/DengXian-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .p1-layer {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 660px at 22% 46%, rgba(78, 204, 163, 0.12), transparent 64%),
+        radial-gradient(760px 560px at 92% 30%, rgba(255, 215, 0, 0.09), transparent 62%),
+        #101120;
+    }
+    .p1-phone {
+      position: absolute;
+      left: 150px;
+      top: 90px;
+      width: 405px;
+      height: 900px;
+    }
+    .p1-phone img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      box-shadow: 0 52px 110px rgba(0, 0, 0, 0.62);
+      transform-origin: 50% 50%;
+    }
+    .p1-copy {
+      position: absolute;
+      left: 690px;
+      top: 268px;
+      width: 1080px;
+    }
+    .p1-kicker {
+      font-family: "Space Mono", monospace;
+      font-size: 30px;
+      letter-spacing: 0.28em;
+      color: #4ecca3;
+      margin-bottom: 32px;
+    }
+    .p1-h {
+      font-family: "Deng";
+      font-weight: 700;
+      font-size: 96px;
+      line-height: 1.16;
+      color: #eaeaea;
+      letter-spacing: 0.04em;
+    }
+    .p1-p {
+      font-family: "Deng";
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.66;
+      color: #9ba0b8;
+      margin-top: 38px;
+      width: 900px;
+    }
+    .p1-note {
+      font-family: "Space Mono", monospace;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      color: #ffd700;
+      margin-top: 34px;
+    }
+    .p1-rule {
+      position: absolute;
+      left: 690px;
+      top: 250px;
+      width: 84px;
+      height: 6px;
+      background: #4ecca3;
+    }
+  </style>
+
+  <div id="root" data-composition-id="proof1" data-width="1920" data-height="1080">
+    <div id="proof1-layer" class="p1-layer clip" data-start="0" data-duration="4.6">
+      <div class="p1-phone">
+        <div class="p1-phone-in">
+          <img src="assets/shots/stats.png" alt="统计页：六个月趋势、分类占比与预算" />
+        </div>
+      </div>
+
+      <div class="p1-rule"></div>
+      <div class="p1-copy">
+        <div class="p1-copy-in">
+          <div class="p1-kicker">看账</div>
+          <div class="p1-h">趋势 · 占比 · 预算</div>
+          <div class="p1-p">趋势、占比、预算，一屏看全。</div>
+          <div class="p1-note">到 80% 提醒一次</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo(
+      ".p1-phone-in",
+      { x: -70, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.72, ease: "power3.out" },
+      0,
+    );
+    tl.fromTo(".p1-phone img", { scale: 1 }, { scale: 1.03, duration: 4.2, ease: "none" }, 0.4);
+
+    tl.fromTo(
+      ".p1-rule",
+      { scaleX: 0, transformOrigin: "left center" },
+      { scaleX: 1, duration: 0.42, ease: "power2.out" },
+      0.12,
+    );
+    tl.fromTo(
+      ".p1-kicker",
+      { x: 26, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+      0.2,
+    );
+    tl.fromTo(
+      ".p1-h",
+      { y: 26, opacity: 0, filter: "blur(9px)" },
+      { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.68, ease: "power3.out" },
+      0.32,
+    );
+    tl.fromTo(
+      ".p1-p",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.66, ease: "power2.out" },
+      0.74,
+    );
+    tl.fromTo(
+      ".p1-note",
+      { y: 16, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+      1.18,
+    );
+
+    window.__timelines["proof1"] = tl;
+  </script>
+</template>

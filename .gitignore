@@ -1,0 +1,32 @@
+# Gradle / Android 构建产物
+.gradle/
+.idea/
+**/build/
+local.properties
+captures/
+*.hprof
+
+# 签名材料，绝不入库
+*.jks
+*.keystore
+*.p12
+keystore.properties
+
+# 本地验证与素材（含真实账单数据库快照，不入库）
+artifacts/
+
+# Python 脚本缓存
+__pycache__/
+*.pyc
+
+# 宣传片工程：字体是系统字体、渲染缓存和成片体积大
+promo/assets/fonts/
+promo/.hyperframes/
+promo/node_modules/
+promo/dist/
+*.mp4
+*.wav
+
+# 系统杂项
+.DS_Store
+Thumbs.db

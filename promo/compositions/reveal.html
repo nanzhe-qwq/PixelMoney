@@ -1,0 +1,194 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Deng";
+      src: url("assets/fonts/DengXian-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Deng";
+      src: url("assets/fonts/DengXian-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .rv-layer {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(980px 720px at 76% 46%, rgba(255, 215, 0, 0.13), transparent 63%),
+        radial-gradient(760px 520px at 6% 88%, rgba(15, 52, 96, 0.55), transparent 66%),
+        #0e0f1c;
+    }
+    .rv-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: 0.7;
+    }
+    .rv-copy {
+      position: absolute;
+      left: 132px;
+      top: 286px;
+      width: 800px;
+    }
+    .rv-kicker {
+      font-family: "Space Mono", monospace;
+      font-size: 30px;
+      letter-spacing: 0.26em;
+      color: #ffd700;
+      margin-bottom: 34px;
+    }
+    .rv-h {
+      font-family: "Deng";
+      font-weight: 700;
+      font-size: 92px;
+      line-height: 1.18;
+      color: #eaeaea;
+    }
+    .rv-p {
+      font-family: "Deng";
+      font-weight: 400;
+      font-size: 37px;
+      line-height: 1.62;
+      color: #9ba0b8;
+      margin-top: 40px;
+      width: 720px;
+    }
+    .rv-phone {
+      position: absolute;
+      right: 176px;
+      top: 90px;
+      width: 405px;
+      height: 900px;
+    }
+    .rv-phone img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      box-shadow: 0 56px 120px rgba(0, 0, 0, 0.66);
+      transform-origin: 50% 42%;
+    }
+    .rv-ring {
+      position: absolute;
+      left: 7.4%;
+      top: 31.8%;
+      width: 85.2%;
+      height: 33.2%;
+      border: 3px solid #ffd700;
+      border-radius: 20px;
+      box-shadow:
+        0 0 0 6px rgba(255, 215, 0, 0.12),
+        0 0 46px rgba(255, 215, 0, 0.34);
+    }
+    .rv-tag {
+      position: absolute;
+      right: 624px;
+      top: 322px;
+      padding: 12px 22px;
+      background: #ffd700;
+      color: #12121f;
+      font-family: "Deng";
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.02em;
+    }
+    .rv-line {
+      position: absolute;
+      right: 588px;
+      top: 356px;
+      width: 40px;
+      height: 2px;
+      background: #ffd700;
+      transform-origin: left center;
+    }
+  </style>
+
+  <div id="root" data-composition-id="reveal" data-width="1920" data-height="1080">
+    <div id="reveal-layer" class="rv-layer clip" data-start="0" data-duration="6.6">
+      <div class="rv-grid"></div>
+
+      <div class="rv-copy">
+        <div class="rv-copy-in">
+          <div class="rv-kicker">微信 / 支付宝 · 实时</div>
+          <div class="rv-h">付完款，<br />它先开口</div>
+          <div class="rv-p">金额、商家、时间已经填好，<br />你只需要点一下确认。</div>
+        </div>
+      </div>
+
+      <div class="rv-phone">
+        <div class="rv-phone-in">
+          <img src="assets/shots/popup.png" alt="支付宝支付成功页上弹出的记账确认卡片" />
+          <div class="rv-ring"></div>
+        </div>
+      </div>
+
+      <div class="rv-tag">自动弹出的记账卡</div>
+      <div class="rv-line"></div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo(".rv-grid", { opacity: 0 }, { opacity: 0.7, duration: 0.7, ease: "power1.out" }, 0);
+
+    tl.fromTo(
+      ".rv-phone-in",
+      { y: 90, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.82, ease: "power3.out" },
+      0.06,
+    );
+    tl.fromTo(".rv-phone img", { scale: 0.97 }, { scale: 1.055, duration: 5.9, ease: "none" }, 0.5);
+
+    tl.fromTo(
+      ".rv-kicker",
+      { x: -34, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+      0.24,
+    );
+    tl.fromTo(
+      ".rv-h",
+      { y: 30, opacity: 0, filter: "blur(10px)" },
+      { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, ease: "power3.out" },
+      0.38,
+    );
+    tl.fromTo(
+      ".rv-p",
+      { y: 22, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
+      0.86,
+    );
+
+    tl.fromTo(
+      ".rv-ring",
+      { opacity: 0, scale: 1.06 },
+      { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" },
+      1.16,
+    );
+    tl.fromTo(
+      ".rv-line",
+      { scaleX: 0, opacity: 0 },
+      { scaleX: 1, opacity: 1, duration: 0.32, ease: "power2.out" },
+      1.5,
+    );
+    tl.fromTo(
+      ".rv-tag",
+      { x: -26, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.42, ease: "power3.out" },
+      1.66,
+    );
+
+    window.__timelines["reveal"] = tl;
+  </script>
+</template>
