@@ -1,119 +1,143 @@
-# 像素记账 · PixelMoney
+<div align="center">
 
-> 付完款的那一刻，账单页面自己弹出来问你要不要记。
+<h1>像素记账 · PixelMoney</h1>
 
-一个 Android 自动记账 App。它想解决的不是"记账能不能更快"，而是**根本不用记得去记账**：微信、支付宝扫码/转账/收款完成后，在支付成功页或账单详情页上直接浮起一张记账卡——金额、商家、时间已经填好，点一下入账，点忽略就当没发生。
+<p><b>付完款的那一刻，账单页面自己弹出来问你要不要记。</b></p>
+
+<p><sub>Android 自动记账 · Kotlin + Jetpack Compose + Room · 数据只存在本机</sub></p>
+
+<p>
+  <a href="https://developer.android.com"><img src="https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=white" alt="Android 8.0+"></a>
+  <a href="https://kotlinlang.org"><img src="https://img.shields.io/badge/Kotlin-1.9-7F52FF?logo=kotlin&logoColor=white" alt="Kotlin"></a>
+  <a href="https://developer.android.com/jetpack/compose"><img src="https://img.shields.io/badge/Compose-BOM%202024.01-4285F4?logo=jetpackcompose&logoColor=white" alt="Compose"></a>
+  <a href="https://github.com/nanzhe-qwq/PixelMoney/releases/latest"><img src="https://img.shields.io/github/v/release/nanzhe-qwq/PixelMoney?color=FFD700&label=release" alt="release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-9BA0B8" alt="MIT"></a>
+</p>
+
+<p>
+  <a href="docs/promo.mp4"><img src="docs/screenshots/promo-poster.jpg" width="760" alt="像素记账 31 秒宣传片"></a>
+  <br>
+  <sub>▶ 31 秒宣传片，点开就能播</sub>
+</p>
+
+</div>
+
+---
+
+它想解决的不是「记账能不能更快」，而是**根本不用记得去记账**。微信、支付宝扫码 / 转账 / 收款完成后，在支付成功页或账单详情页上直接浮起一张记账卡：金额、商家、时间已经填好，点一下入账，点忽略就当没发生。淘宝、拼多多、京东外卖、美团、饿了么这些页面也一样——只有真的付完了才提示。
 
 数据全在本机：没有账号、没有云同步、不联网（只有你主动点「获取参考汇率」时才访问一次 ECB）。表结构、迁移、备份格式都在仓库里，随时可以自己审计。
 
-<table>
-<tr>
-<td><img src="docs/screenshots/popup.webp" width="200" alt="支付宝支付成功页上的记账卡"></td>
-<td><img src="docs/screenshots/home.webp" width="200" alt="首页"></td>
-<td><img src="docs/screenshots/add-record.webp" width="200" alt="记一笔"></td>
-<td><img src="docs/screenshots/stats.webp" width="200" alt="统计"></td>
-</tr>
-<tr>
-<td align="center">付完款，卡片自己浮上来</td>
-<td align="center">首页按日分组、可搜索</td>
-<td align="center">手动记一笔 / 汇率换算</td>
-<td align="center">趋势 · 占比 · 预算</td>
-</tr>
-<tr>
-<td><img src="docs/screenshots/budget.webp" width="200" alt="月度预算"></td>
-<td><img src="docs/screenshots/trash.webp" width="200" alt="回收站"></td>
-<td><img src="docs/screenshots/settings.webp" width="200" alt="设置"></td>
-<td><img src="docs/screenshots/payment.webp" width="200" alt="支付记账权限"></td>
-</tr>
-<tr>
-<td align="center">80% / 100% 各提醒一次</td>
-<td align="center">删除先进回收站，30 天可恢复</td>
-<td align="center">导入导出 · 整库备份 · 每日提醒</td>
-<td align="center">权限一眼看清</td>
-</tr>
-</table>
-
 ## 下载
 
-- 最新安装包：[Releases · v4.4.2](https://github.com/nanzhe-qwq/PixelMoney/releases/latest) —— 3.4 MB，Android 8.0（API 26）以上
-- 想自己编译：见下面的[构建](#构建)
+| | |
+| --- | --- |
+| 安装包 | [Releases · latest](https://github.com/nanzhe-qwq/PixelMoney/releases/latest) · 3.4 MB · Android 8.0（API 26）以上 |
+| 自己编译 | 见[构建](#构建) |
+| 宣传片 | [31 秒 mp4](docs/promo.mp4) · [博客长文](https://qwqovoppp.top/blog/pixel-money-automatic-bookkeeping/) |
 
-装好后先到「我的 → 支付记账」把两个权限打开：**账单读取**（无障碍）和**后台弹出界面**。后者在澎湃 OS / MIUI 里是独立开关，只开「显示悬浮窗」是不会弹窗的——这是踩过最多次的坑。
+装好后要在系统里开两样东西：**账单读取**（无障碍服务）和**后台弹出界面**（澎湃 OS / MIUI 的独立开关——只开「显示悬浮窗」是不会弹的，这点踩过坑）。
+
+## 界面
+
+<table>
+<tr>
+<td align="center"><img src="docs/screenshots/popup.webp" width="190" alt="支付宝支付成功页上的记账卡"></td>
+<td align="center"><img src="docs/screenshots/home.webp" width="190" alt="首页"></td>
+<td align="center"><img src="docs/screenshots/add-record.webp" width="190" alt="记一笔"></td>
+<td align="center"><img src="docs/screenshots/stats.webp" width="190" alt="统计"></td>
+</tr>
+<tr>
+<td align="center"><sub>付完款，卡片自己浮上来</sub></td>
+<td align="center"><sub>首页按日分组、可搜索</sub></td>
+<td align="center"><sub>记一笔 / 汇率换算</sub></td>
+<td align="center"><sub>趋势 · 占比 · 预算</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="docs/screenshots/budget.webp" width="190" alt="月度预算"></td>
+<td align="center"><img src="docs/screenshots/trash.webp" width="190" alt="回收站"></td>
+<td align="center"><img src="docs/screenshots/settings.webp" width="190" alt="设置"></td>
+<td align="center"><img src="docs/screenshots/payment.webp" width="190" alt="支付记账权限"></td>
+</tr>
+<tr>
+<td align="center"><sub>80% / 100% 各提醒一次</sub></td>
+<td align="center"><sub>删除先进回收站，30 天可恢复</sub></td>
+<td align="center"><sub>导入导出 · 整库备份 · 每日提醒</sub></td>
+<td align="center"><sub>权限一眼看清</sub></td>
+</tr>
+</table>
 
 ## 功能
 
 **自动记账**
 
-- 微信、支付宝：支付成功页、账单详情、收款到账都能识别；页面给出交易时间时按原时间入账，不会把三个月前的账单记成今天。
-- 淘宝、拼多多、京东（含京东外卖）、美团、饿了么：只在页面同时出现**明确的完成状态**和**实付金额**时才弹，待付款、物流、优惠提醒一律不算交易。
-- 弹窗排队：连着付两笔不会互相覆盖；正在填备注时来新交易只排队、不动你手里的输入框。
-- 保存失败不清空表单，改了就能重试；数据库确认写入成功后才关窗。
-- 总开关 + 按应用单独开关，想关哪个关哪个。
-
-**记账本身**
-
-- 19 个支出分类、8 个收入分类，带 emoji；多账本（日常开销 / 旅行基金 / 学习投资 …）。
-- 首页按日分组、当天小计、关键词搜索、收支筛选、月份切换。
-- 汇率换算：11 种货币，可手填银行实际汇率，也可拉 ECB 参考汇率（按日期）。
-- 周期记账：房租、会员费这类固定支出，由 AlarmManager 后台补记，最多补 62 天内 12 笔，不会开机后一次灌几十条。
+- 微信 / 支付宝：扫码、转账、收款完成后，直接在支付页弹卡片，不用退出 App
+- 淘宝、拼多多、京东（含外卖）、美团、饿了么：页面必须同时出现「完成状态」和「实付金额」才提示，待付款、物流、优惠提醒不会误记
+- 账单详情页：读到「交易时间 / 转账时间」就按原日期入账，不会把三个月前的账单记到今天
+- 连续两笔不会互相覆盖：弹出的排队，正在编辑的备注不会被冲掉
+- 保存失败保留表单，可以原地重试；数据库确认写成功才关窗
 
 **看账**
 
-- 近 6 个月支出趋势柱状图（跨年正确，当前月高亮）。
-- 分类占比环形图（Canvas 手绘，不引第三方图表库）。
-- 月度预算：按「分」比较，到 80% 提醒一次、超支再提醒一次，同一个月不重复骚扰。
+- 首页按日分组、关键词搜索、收支筛选、月份切换、当日小计
+- 统计：近 6 个月支出趋势、每日支出柱状图、分类占比环形图
+- 月度预算：到 80% 提醒一次、超支再提醒一次（同一档不重复打扰）
 
-**数据进出**
+**整理**
 
-- 账单导入：微信 / 支付宝导出的 CSV、XLSX 直接预览，逐笔勾选、逐笔改分类，可选目标账本，重复导入靠交易单号去重。
-- 账单导出 CSV（UTF-8 BOM，Excel 不乱码）。
-- 整库备份 JSON：账本、账单、回收站、预算、周期规则、导入去重键一次打包，恢复前完整校验、单事务替换。
-- 回收站：删除是软删除，30 天内可恢复，删完还会浮一条 4 秒的「撤销」。
+- 多账本（日常开销 / 旅行基金 / 学习投资 …）
+- 账单导入：微信、支付宝导出的 CSV / XLSX，支持逐笔改分类、选目标账本、自动跳过已导入的重复项
+- 导出 CSV；整库 JSON 备份与恢复（换机原样搬过去，汇率与提醒设置随包走）
+- 回收站：删除先进回收站，30 天内可恢复，删除瞬间还有 4 秒撤销条
+- 定时记账：每天 / 每周 / 每月自动入一笔，补记上限 12 条、只回补 62 天内
+- 每日记账提醒、11 种货币的汇率换算（可手填银行汇率，也可拉 ECB 参考汇率）
 
 ## 技术要点
 
-| | |
+| 问题 | 做法 |
 | --- | --- |
-| 语言 / UI | Kotlin + Jetpack Compose（Material 3），像素风自定义配色与组件 |
-| 存储 | Room（当前 schema v8，六张表，全部迁移手写且不提供"升级失败就清库"的兜底） |
-| 自动记账 | `AccessibilityService` 读页面文本树 → 规则解析（`ScreenPaymentParser`）→ 透明 `Activity`（`PaymentPopupActivity`）承载确认卡 |
-| 为什么用透明 Activity 而不是悬浮窗 | 澎湃 OS / MIUI 在支付 App 前台会把 `TYPE_APPLICATION_OVERLAY` 窗口标成 `mAppOpVisibility=false`——窗口建出来了，但你看不见。换成独立 task 的透明 Activity 才能在支付页上直接显示 |
-| 金额 | 一律折成整数"分"（`util/Money`）再比较，不拿浮点判阈值 |
-| 序列化 | 备份格式自带手写 JSON 解析器（`util/MiniJson`），不引第三方库，也方便在 JVM 单测里跑 |
-| 测试 | 132 项单元测试（JVM）+ 29 项真机 instrumentation 测试（设备：小米 15 Ultra / 澎湃 OS 4） |
+| 支付完成没有 API | 无障碍服务读页面文本，判定「完成状态 + 金额」双条件，而不是关键词命中就记 |
+| 悬浮窗在支付页不显示 | `TYPE_APPLICATION_OVERLAY` 在小米澎湃 OS 上被标成 `mAppOpVisibility=false`，只有离开支付 App 才可见。改用**独立透明 Activity**（`TranslateTheme` + `singleTask` + `excludeFromRecents`），并把「后台弹出界面」列为必需权限 |
+| 弹窗抢焦点 / 盖住输入 | 对话窗口、`WRAP_CONTENT`、无滚动容器，键盘弹出时只做最小避让 |
+| 重复记账 | 页面判重 + 导入用内容哈希去重；跨渠道不做「同金额即同交易」的猜测，宁可留重复也不误删 |
+| 误删不可逆 | 软删除（`deletedAt`）+ 30 天保留 + 撤销条 + 回收站页 |
+| 备份不能靠合并 | 合并会让 id 撞车、去重键失效，所以做成**整库替换**，导入前给出条数核对与覆盖警告 |
+| 无第三方依赖 | JSON 解析、CSV / XLSX 读取、统计图表全部手写；只依赖 AndroidX / Room / Compose |
 
 ## 构建
 
-需要 JDK 17、Android SDK（compileSdk 34）、Gradle wrapper 自带。
-
 ```bash
-git clone https://github.com/nanzhe-qwq/PixelMoney.git
-cd PixelMoney
-echo "sdk.dir=/path/to/Android/Sdk" > local.properties   # Windows 写成 D:/Android/Sdk
+# 1. 指向本机 SDK
+echo "sdk.dir=/path/to/Android/Sdk" > local.properties
+
+# 2. 编译
 ./gradlew :app:assembleDebug
-./gradlew :app:testDebugUnitTest
 ```
 
-Windows 上如果仓库路径含中文，JUnit 会因为类加载拿不到路径而整批失败。实测可行的办法是 `subst P: "<仓库路径>"` 后从 `P:\` 里构建（`Set-Location P:\; .\gradlew.bat ...`）；构建时加 `--no-parallel` 可避开 KSP 偶发的 `cleanFilenames` 未初始化报错。
+Windows 中文路径下 JUnit 类加载会失败，用 `subst` 把仓库映射成盘符、再加 `--no-parallel` 稳一点：
 
-仓库里不含 keystore、`local.properties`、`artifacts/` 与构建产物；`promo/` 是宣传片的 HyperFrames 工程，其中的字体是系统字体，已从版本库排除。
+```powershell
+subst P: "D:\path\to\PixelMoney"
+Set-Location P:\
+$env:JAVA_HOME = 'D:\java17'
+.\gradlew.bat :app:testDebugUnitTest --no-parallel --console=plain
+```
+
+单测 132 项（`app/src/test`），真机测试 30 项（`app/src/androidTest`，需要一台开了无障碍权限的设备）。
 
 ## 已知边界
 
-这个 App 是在真机上一点点试出来的，边界也写在明面上：
-
-- **识别靠页面文案**。微信/支付宝/淘宝等平台一改版，规则就可能失效——这是这类方案的固有成本，不是配置能解决的。
-- 购物和外卖目前只用样本页验证过，没有逐一走完各平台真实支付全流程。
-- 收款、退款、红包、转账等场景覆盖不全，还没法保证每种交易都实时弹窗。
-- 澎湃 OS 除了「显示悬浮窗」，还要单独开「后台弹出界面」；两者是不同开关，只开一个不会有弹窗。
-- 不同渠道对同一笔交易没有统一交易号，为了避免误删真实账单，跨来源不做金额猜重。
-- 只在小米 15 Ultra（澎湃 OS 4）上做过真机验证，其他 ROM 未测。
+- 各平台页面和通知文案会变，识别规则按样本维护，不保证每种支付方式都实时弹出
+- 购物、外卖场景目前只用样本覆盖，没有逐一跑完真实付款全流程
+- 未确认的弹窗队列存在进程内，系统杀进程会丢
+- 退款按「退款」分类单独入账，未与原支出做抵扣关联
+- 不做跨来源金额去重：没有可靠交易号时，宁可留重复也不误删真实账单
 
 ## 相关
 
-- 开发记录（那些踩过的坑是怎么填的）：<https://qwqovoppp.top/blog/pixel-money-automatic-bookkeeping/>
-- 更新记录：见 [docs/CHANGELOG.md](docs/CHANGELOG.md)（4.0 → 4.4.2 逐版说明）
+- 博客长文：[没有「支付完成」这个 API——我怎么让记账 App 学会自己记账](https://qwqovoppp.top/blog/pixel-money-automatic-bookkeeping/)
+- 逐版本开发记录：[docs/CHANGELOG.md](docs/CHANGELOG.md)
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) © 2026 nanzhe-qwq

@@ -26,6 +26,8 @@ promo/node_modules/
 promo/dist/
 *.mp4
 *.wav
+# 例外：README 里内嵌的 31 秒宣传片，8 MB，随源码分发
+!docs/promo.mp4
 
 # 系统杂项
 .DS_Store
